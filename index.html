@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I love you Angel 🥰</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --rose:#c8284a;--blush:#f2a0b4;--cream:#fdf0f3;--deep:#0c0308;--gold:#d4a44c;
+}
+html,body{height:100%;overflow-x:hidden}
+body{
+  background:var(--deep);
+  font-family:'Cormorant Garamond',serif;
+  color:var(--cream);
+  min-height:100vh;
+}
+
+/* ── Starfield ── */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.9;transform:scale(1.4)}}
+
+/* ── Petals ── */
+.petal{position:fixed;top:-60px;font-size:1.3rem;pointer-events:none;z-index:1;animation:drift linear infinite;opacity:0}
+@keyframes drift{
+  0%  {transform:translateY(0) rotate(0deg) translateX(0);opacity:.8}
+  50% {transform:translateY(50vh) rotate(180deg) translateX(30px);opacity:.6}
+  100%{transform:translateY(105vh) rotate(360deg) translateX(-20px);opacity:0}
+}
+
+/* ── Page sections ── */
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:2;padding:40px 24px}
+
+/* ── Intro / hero ── */
+#hero{background:radial-gradient(ellipse 80% 70% at 50% 50%,#2a0515 0%,var(--deep) 70%)}
+.big-heart{font-size:5rem;animation:heartbeat 1.8s ease-in-out infinite;display:block;margin-bottom:20px}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.15)}28%{transform:scale(1)}42%{transform:scale(1.1)}70%{transform:scale(1)}}
+.hero-title{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(2rem,8vw,4rem);color:var(--blush);text-align:center;line-height:1.2;text-shadow:0 0 40px rgba(200,40,74,.5);margin-bottom:12px}
+.hero-sub{font-size:1.1rem;color:rgba(242,160,180,.6);letter-spacing:.15em;text-transform:uppercase;margin-bottom:40px}
+.scroll-hint{font-size:.85rem;color:rgba(242,160,180,.4);letter-spacing:.2em;text-transform:uppercase;animation:float 2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(6px);opacity:.8}}
+
+/* ── Divider ── */
+.divider{width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--rose),transparent);margin:16px auto}
+.divider-ornament{text-align:center;color:var(--rose);font-size:.9rem;letter-spacing:.3em;margin:8px 0}
+
+/* ── Love letter section ── */
+#letter{background:radial-gradient(ellipse 70% 80% at 50% 40%,#1e0410 0%,var(--deep) 65%)}
+.letter-card{
+  background:linear-gradient(145deg,rgba(30,4,16,.95),rgba(15,2,8,.95));
+  border:1px solid rgba(200,40,74,.2);
+  border-radius:20px;
+  padding:48px 40px;
+  max-width:560px;
+  width:100%;
+  box-shadow:0 0 80px rgba(200,40,74,.1),0 30px 60px rgba(0,0,0,.5);
+  position:relative;
+  overflow:hidden;
+}
+.letter-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(200,40,74,.08),transparent);
+  pointer-events:none;
+}
+.letter-date{font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(242,160,180,.4);margin-bottom:32px;text-align:center}
+.letter-salutation{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;color:var(--blush);margin-bottom:20px}
+.letter-body{font-size:1.05rem;line-height:1.9;color:rgba(242,220,228,.75);font-style:italic;margin-bottom:28px}
+.letter-body p{margin-bottom:16px}
+.letter-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:var(--blush);text-align:right}
+.letter-hearts{text-align:right;font-size:1.2rem;margin-top:4px}
+
+/* ── Poem section ── */
+#poem{background:radial-gradient(ellipse 80% 60% at 30% 60%,#1a0410 0%,var(--deep) 65%)}
+.poem-title{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.4rem,5vw,2.2rem);color:var(--gold);text-align:center;margin-bottom:32px;text-shadow:0 0 30px rgba(212,164,76,.3)}
+.poem-lines{max-width:480px;width:100%;text-align:center}
+.poem-line{font-size:1.08rem;line-height:2.1;color:rgba(242,220,228,.8);font-style:italic;opacity:0;transform:translateY(16px);transition:all .7s ease}
+.poem-line.visible{opacity:1;transform:translateY(0)}
+.poem-stanza{margin-bottom:28px}
+
+/* ── Closing ── */
+#closing{background:radial-gradient(ellipse 80% 70% at 50% 50%,#2a0515 0%,var(--deep) 70%)}
+.closing-heart{font-size:4rem;animation:heartbeat 1.8s ease-in-out infinite;margin-bottom:24px}
+.closing-text{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.3rem,5vw,2rem);color:var(--blush);text-align:center;margin-bottom:8px}
+.closing-forever{font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,160,180,.4);margin-bottom:40px}
+.watermark{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,40,74,.3);text-align:center;margin-top:60px;padding-bottom:24px}
+
+/* ── Entrance animations ── */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- Page 1: Hero -->
+<section class="page" id="hero">
+  <span class="big-heart">❤️</span>
+  <h1 class="hero-title fade-in">I love you,<br>Angel</h1>
+  <p class="hero-sub fade-in">A message from the heart</p>
+  <div class="divider"></div>
+  <div class="divider-ornament fade-in">✦ &nbsp; 🥰 &nbsp; ✦</div>
+  <p class="scroll-hint" style="margin-top:60px">↓ &nbsp; scroll &nbsp; ↓</p>
+</section>
+
+<!-- Page 2: Love Letter -->
+<section class="page" id="letter">
+  <div class="letter-card fade-in">
+    <div class="letter-date">A love letter &nbsp;·&nbsp; Written from the soul</div>
+    <div class="letter-salutation">My dearest Angel,</div>
+    <div class="letter-body">
+      <p>There are moments when words feel too small to hold what I feel for you — yet here I am, trying anyway, because you deserve to know.</p>
+      <p>You are the warmth that finds me on my coldest days. The laugh I search for in every room. The person I want beside me in all the quiet, ordinary, beautiful moments that make up a life.</p>
+      <p>Loving you is the easiest thing I have ever done, and the greatest thing I have ever been given.</p>
+      <p>So here, in this little message, I want you to know — simply, completely, without question —</p>
+    </div>
+    <div class="letter-sign">I love you. 🥰</div>
+    <div class="letter-hearts">❤️ 🌹 ❤️</div>
+  </div>
+</section>
+
+<!-- Page 3: Poem -->
+<section class="page" id="poem">
+  <h2 class="poem-title fade-in">For You, Angel</h2>
+  <div class="poem-lines fade-in">
+    <div class="poem-stanza">
+      <div class="poem-line">In every sunrise, I see your face,</div>
+      <div class="poem-line">In every heartbeat, I find your grace,</div>
+      <div class="poem-line">You are the poem the stars recite,</div>
+      <div class="poem-line">My favourite warmth, my softest light.</div>
+    </div>
+    <div class="divider" style="margin:20px auto"></div>
+    <div class="poem-stanza">
+      <div class="poem-line">If time could pause on a single day,</div>
+      <div class="poem-line">I'd choose the one I first heard you say</div>
+      <div class="poem-line">my name — the way no one else does —</div>
+      <div class="poem-line">and knew, right then, what love truly was.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Page 4: Closing -->
+<section class="page" id="closing">
+  <div class="closing-heart">💕</div>
+  <p class="closing-text fade-in">Always &amp; Forever,<br>Yours.</p>
+  <p class="closing-forever fade-in">✦ &nbsp; now &nbsp;·&nbsp; always &nbsp;·&nbsp; forever &nbsp; ✦</p>
+  <div class="divider"></div>
+  <div style="font-size:2rem;margin-top:24px;animation:heartbeat 1.8s ease-in-out infinite">🥰</div>
+  <p class="watermark">~ A message encoded with love · Scan with your heart ~</p>
+</section>
+
+<script>
+// ── Starfield ──
+const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+const stars=Array.from({length:160},()=>({
+  x:Math.random(),y:Math.random(),
+  r:Math.random()*1.5+.3,
+  speed:Math.random()*.004+.001,
+  phase:Math.random()*Math.PI*2
+}));
+function drawStars(t){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    const a=.15+.7*Math.abs(Math.sin(s.phase+t*s.speed));
+    ctx.beginPath();
+    ctx.arc(s.x*canvas.width,s.y*canvas.height,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,230,240,${a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars(0);
+
+// ── Petals ──
+const petalEmojis=['🌹','🌸','💕','❤️','🥀','🌷'];
+for(let i=0;i<18;i++){
+  const el=document.createElement('div');
+  el.className='petal';
+  el.textContent=petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+  el.style.cssText=`left:${Math.random()*100}vw;font-size:${.8+Math.random()*1}rem;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*15}s`;
+  document.body.appendChild(el);
+}
+
+// ── Scroll reveal ──
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+  });
+},{threshold:.15});
+document.querySelectorAll('.fade-in,.poem-line').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
